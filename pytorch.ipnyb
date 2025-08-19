@@ -1,64 +1,251 @@
 {
- "cells": [
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    " "
-   ]
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "t5vyfeJYIsRb"
+      },
+      "source": [
+        "Pytoch basics"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 4,
+      "metadata": {
+        "solution2": "hidden",
+        "id": "bFTLHoimIsRc"
+      },
+      "outputs": [],
+      "source": [
+        "import torch"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 5,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jXhzc__SIsRe",
+        "outputId": "ade19a76-5133-4960-f9dc-26ab3f63e580"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "tensor([[1, 2, 3],\n",
+              "        [4, 5, 6],\n",
+              "        [7, 8, 9],\n",
+              "        [0, 0, 0]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ],
+      "source": [
+        "data = [[1,2,3], [4,5,6], [7, 8, 9], [0, 0 , 0]]\n",
+        "x = torch.tensor(data)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def about(x):\n",
+        "  print(f\" x: {x}\")\n",
+        "  print(f\" x.shape: {x.shape}\")\n",
+        "  print(f\" x.dtype: {x.dtype}\")\n",
+        "  print(f\" x.device: {x.device}\")\n",
+        "  print(f\" x.size : {x.size()}\")\n",
+        "  print(f\" x.grad : {x.grad}\")\n",
+        "  print(f\" x.grad_fn : {x.grad_fn}\")"
+      ],
+      "metadata": {
+        "id": "e0H2HhehJ10c"
+      },
+      "execution_count": 11,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "about(x)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jja98rlsLK1F",
+        "outputId": "4977d6d7-d742-4388-de47-748f71573fce"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            " x: tensor([[1, 2, 3],\n",
+            "        [4, 5, 6],\n",
+            "        [7, 8, 9],\n",
+            "        [0, 0, 0]])\n",
+            " x.shape: torch.Size([4, 3])\n",
+            " x.dtype: torch.int64\n",
+            " x.device: cpu\n",
+            " x.size : torch.Size([4, 3])\n",
+            " x.grad : None\n",
+            " x.grad_fn : None\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "y = torch.tensor ([ [1, 0, 1, 0], [0, 1, 0, 1]])"
+      ],
+      "metadata": {
+        "id": "hZITCO1mLrMK"
+      },
+      "execution_count": 13,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "about (y)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MExP6mI3L5_r",
+        "outputId": "7dd5a5e3-349a-40ac-b03d-b0f09b3b05ab"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            " x: tensor([[1, 0, 1, 0],\n",
+            "        [0, 1, 0, 1]])\n",
+            " x.shape: torch.Size([2, 4])\n",
+            " x.dtype: torch.int64\n",
+            " x.device: cpu\n",
+            " x.size : torch.Size([2, 4])\n",
+            " x.grad : None\n",
+            " x.grad_fn : None\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "torch.cat( (y,torch.tensor([1,0, 1]) ))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 141
+        },
+        "id": "VplQZzEWMDMq",
+        "outputId": "c6ab89e5-a522-4ecd-f0b1-eed87928d511"
+      },
+      "execution_count": 20,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "RuntimeError",
+          "evalue": "Tensors must have same number of dimensions: got 2 and 1",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mRuntimeError\u001b[0m                              Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-819055996.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mtorch\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcat\u001b[0m\u001b[0;34m(\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mtorch\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtensor\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;36m0\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mRuntimeError\u001b[0m: Tensors must have same number of dimensions: got 2 and 1"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Y70NKohEIsRe"
+      },
+      "source": [
+        "***"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "7301d22e",
+        "outputId": "1ce0bf18-2a3c-4fc9-a4da-2890686fc73e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "source": [
+        "tensor1 = torch.tensor([[1, 2], [3, 4]])\n",
+        "tensor2 = torch.tensor([[5, 6], [7, 8]])\n",
+        "\n",
+        "# Concatenate along dimension 1 (columns)\n",
+        "concatenated_cols = torch.cat((tensor1, tensor2), dim=1)\n",
+        "\n",
+        "print(\"Tensor 1:\")\n",
+        "print(tensor1)\n",
+        "print(\"\\nTensor 2:\")\n",
+        "print(tensor2)\n",
+        "print(\"\\nConcatenated along dim=1 (columns):\")\n",
+        "print(concatenated_cols)"
+      ],
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tensor 1:\n",
+            "tensor([[1, 2],\n",
+            "        [3, 4]])\n",
+            "\n",
+            "Tensor 2:\n",
+            "tensor([[5, 6],\n",
+            "        [7, 8]])\n",
+            "\n",
+            "Concatenated along dim=1 (columns):\n",
+            "tensor([[1, 2, 5, 6],\n",
+            "        [3, 4, 7, 8]])\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.6.7"
+    },
+    "colab": {
+      "provenance": []
+    }
   },
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {
-    "solution2": "hidden"
-   },
-   "outputs": [],
-   "source": [
-    "x = 0"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "***"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "* [The official Python 3.6 documentation](https://docs.python.org/3.6/index.html)"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.6.7"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
+  "nbformat": 4,
+  "nbformat_minor": 0
 }
